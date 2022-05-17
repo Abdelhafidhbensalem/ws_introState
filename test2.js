@@ -1,4 +1,4 @@
-/*let intevalId=setInterval(()=>console.log("hello"),1000)
-clearInterval(intevalId)*/
+let intevalId=setInterval(()=>console.log("hello"),1000)
+//
 
-setTimeout(()=>console.log("hiiii"),2000)
+setTimeout(()=>clearInterval(intevalId),5000)

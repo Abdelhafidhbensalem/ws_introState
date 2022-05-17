@@ -1,36 +1,40 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import './App.css';
 import Counter from './Components/Counter/Counter';
 
 //functional component
-/*function App() {
+export function App() {
+  const [show,setShow]=useState(false)
+  const [timer1, setTimer1] = useState(new Date().toLocaleTimeString())
+  useEffect(() => {
+    console.log("app did mount")
+    setInterval(() => {
+      setTimer1(new Date().toLocaleTimeString());
+    }, 1000);
+    return () => {
+console.log("App unmount")    }
+  }, [])
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={()=>setShow(!show)}>{show?"hide":"show"}</button>
+      <h1>App component</h1>
+      {show&&<Counter x="youssef" />}
+      <h3>timer1:{timer1}</h3>
     </div>
   );
 }
-*/
-//component based class
 
+//component based class
+/*
 class App extends Component {
-  state = { show: false, timer1: 0 }
+  state = { show: false, timer1: new Date().toLocaleTimeString()}
 
   componentDidMount() {
     console.log("component app mounted")
+    setInterval(() => {
+      this.setState({timer1:new Date().toLocaleTimeString() });
+    }, 1000);
   }
   componentWillUnmount() {
     console.log("app unmounted")
@@ -45,4 +49,4 @@ class App extends Component {
   }
 
 }
-export default App;
+export default App;*/
